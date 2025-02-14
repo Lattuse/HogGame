@@ -42,7 +42,7 @@ python main.py
 | `Move Right` | → (Right Arrow) |
 | `Shoot` | LMB (Left Mouse Button) |
 
-## 📂 Project Structure
+## 📂 Project Structure .
 
 📂 HogGame FINAL/
 
