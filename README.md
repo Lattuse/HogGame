@@ -94,22 +94,32 @@ When the player loses, the game should:
 
 #### Implementation
 ```python
-if game_over:
-    display_game_over_screen(final_score)
-    if pygame.mouse.get_pressed()[0]:  # Left-click to restart
-        reset_game()
+if dead:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = True
+        surface.fill("white")
+        surface.blit(end, (220, 200))
+        surface.blit(score_surface, (250, 250))
+        
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                dead = False 
+                enemies = []
+                count = 0
 ```
 
 - When the player loses, the score is displayed before resetting.
 - Clicking the left mouse button instantly restarts the game.
 
 ```mermaid
-    A[Start Game] --> B[Player is Playing];
-    B --> C[Player Loses (Game Over)];
-    C --> D[Display Final Score];
-    D --> E[Player Clicks to Restart];
-    E --> F[Reset All Variables (Except Total Score)];
-    F --> A;
+    flowchart TD
+    A[Start Game] --> B[Player is Playing]
+    B --> C["Player Loses (dead)"]
+    C --> D[Display Final Score]
+    D --> E[Player Clicks to Restart]
+    E --> F["Reset All Variables"]
+    F --> A
 ```
 ## 🛠 Installation & Running the Game
 
