@@ -44,7 +44,7 @@ python main.py
 
 ## 📂 Project Structure
 
-📂 mukashev_game_final/
+📂 HogGame FINAL/
 
 │── 📂 all_sprites/         # Folder containing sprites
 
