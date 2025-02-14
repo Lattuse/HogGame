@@ -34,7 +34,7 @@ for bullet in bullets:
 for enemy in enemies:
     enemy.move(dt)
 ```
-- clock.tick(60) / 1000 ensures the game updates at 60 FPS, preventing speed inconsistencies.
+- clock.tick() / 1000 ensures the game's movement doesn't depend on FPS, preventing speed inconsistencies.
 - All movement calculations are multiplied by dt, so speed remains constant.
 
 | Without Delta Time ❌ | With Delta Time ✅                 |
@@ -54,17 +54,20 @@ Instead of shooting in fixed directions (e.g., up, down, left, right), we use ve
 import math
 
 class Bullet(Square):
-    def __init__(self, pos, speed, height, width, color, targetx, targety):
+    def __init__(self, pos , speed, height, width, color, targetx,targety):
         super().__init__(pos, height, width, color, speed)
         self.height = 10
         self.width = 10
-        x, y = pos
-        angle = math.atan2(targety - y, targetx - x)  
-        self.dx = math.cos(angle) * speed  
-        self.dy = math.sin(angle) * speed  
-        self.x, self.y = x, y
+        x = pos[0]
+        y = pos[1]
+        angle = math.atan2(targety-y, targetx-x) #get angle to target in rads
+        self.dx = math.cos(angle)*speed
+        self.dy = math.sin(angle)*speed
+        self.x = x
+        self.y = y
 
     def move(self, dt):
+
         self.x += self.dx * dt
         self.y += self.dy * dt
         self.rect.x = int(self.x)
